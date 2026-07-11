@@ -10,6 +10,7 @@ document.getElementById("summarize").addEventListener("click", async () => {
   chrome.storage.sync.get(["geminiApiKey"], ({ geminiApiKey }) => {
     if (!geminiApiKey) {
       result.innerText = "No API key selected! Use the gear icon to add one.";
+      btn.disabled = false;
       return;
     }
 
@@ -22,11 +23,13 @@ document.getElementById("summarize").addEventListener("click", async () => {
           if (chrome.runtime.lastError) {
             result.innerText =
               "Couldn't reach this page. Try refreshing the tab.";
+              btn.disabled = false;
             return;
           }
 
           if (!text) {
             result.innerText = "Couldn't extract text from this page!!";
+            btn.disabled = false;
             return;
           }
 
@@ -39,6 +42,9 @@ document.getElementById("summarize").addEventListener("click", async () => {
             result.innerText = summary;
           } catch (error) {
             result.innerText = "Gemini error: " + error.message;
+          }
+          finally{
+            btn.disabled = false;
           }
         },
       );
