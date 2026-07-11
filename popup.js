@@ -57,9 +57,9 @@ async function getGeminiSummary(rawText, type, apiKey) {
   const text = rawText.length > max ? rawText.slice(0, max) + "..." : rawText;
 
   const promptMap = {
-    concise: `Summarize in 2-3 sentences:\n\n${text}`,
-    detailed: `Give a detailed summary:\n\n${text}`,
-    bullets: `Summarize in 5-7 bullet points (start each with "- "):\n\n${text}`,
+    concise: `Summarize in 2-3 sentences. Do not use markdown formatting (no asterisks, headers, or bullet symbols) — plain text only:\n\n${text}`,
+    detailed: `Give a detailed summary. Do not use markdown formatting (no asterisks, headers, or bullet symbols) — plain text only:\n\n${text}`,
+    bullets: `Summarize in 5-7 bullet points, each starting with "- " on its own line. Do not use any other markdown formatting (no asterisks, no bold, no headers):\n\n${text}`,
   };
 
   const maxTokensMap = {
