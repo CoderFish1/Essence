@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Essence Settings</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Premium Light Mode */
+            --bg-body: linear-gradient(135deg, #f0f2f5 0%, #e4e7eb 100%);
+            --bg-surface: #ffffff;
+            --text-main: #18181b;
+            --text-muted: #71717a;
+            --border-color: rgba(0, 0, 0, 0.08);
+            
+            --btn-primary-bg: linear-gradient(180deg, #27272a, #18181b);
+            --btn-primary-text: #ffffff;
+            --btn-primary-shadow: 0 4px 12px rgba(24, 24, 27, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            
+            --surface-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+            --icon-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.05), 0 2px 6px -2px rgba(0, 0, 0, 0.03);
+            
+            --radius: 16px;
+            --inner-radius: 12px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Auto Dark Mode based on system preference */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: linear-gradient(135deg, #121214 0%, #09090b 100%);
+                --bg-surface: #18181b;
+                --text-main: #f4f4f5;
+                --text-muted: #a1a1aa;
+                --border-color: rgba(255, 255, 255, 0.1);
+                
+                --btn-primary-bg: linear-gradient(180deg, #f4f4f5, #d4d4d8);
+                --btn-primary-text: #09090b;
+                --btn-primary-shadow: 0 4px 12px rgba(255, 255, 255, 0.1), inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+                
+                --surface-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+                --icon-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .container {
+            background: var(--bg-surface);
+            padding: 36px 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--surface-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            object-fit: cover;
+            box-shadow: var(--icon-shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--inner-radius);
+            background: var(--bg-body);
+            color: var(--text-main);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--text-muted);
+            background: var(--bg-surface);
+            box-shadow: inset 0 0 0 1px var(--text-muted);
+        }
+
+        input[type="text"]::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .helper-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .helper-text a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+            padding-bottom: 1px;
+        }
+
+        .helper-text a:hover {
+            border-bottom-color: var(--text-main);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: var(--inner-radius);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            box-shadow: var(--btn-primary-shadow);
+            transition: var(--transition);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Success Message Styling */
+        #success {
+            display: none; 
+            margin-top: 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #10B981; 
+            text-align: center;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        #success.show {
+            display: block;
+            animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <img src="essence_icon.png" class="logo" alt="Essence Logo">
+                <h1>Essence Settings</h1>
+                <p>Configure your AI Reading Companion</p>
+            </div>
+            
+            <div class="form">
+                <div class="form-group">
+                    <label for="api-key">Your API Key</label>
+                    <input type="text" id="api-key" placeholder="e.g. AIzaSyB..." autocomplete="off">
+                </div>
+
+                <p class="helper-text">
+                    Don't have an API key? You can get one for free from <br>
+                    <a href="https://aistudio.google.com/app/api-keys" target="_blank" rel="noopener noreferrer">Google AI Studio</a>.
+                </p>
+
+                <button id="save-btn">Save Settings</button>
+                
+                <p id="success">Settings saved successfully!</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            Made with ❤️ by Shrey
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>
