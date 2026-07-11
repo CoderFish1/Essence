@@ -221,6 +221,21 @@
         border-radius: 10px;
     }
 
+    /* ---------- Loader ---------- */
+    .loader {
+        width: 22px;
+        height: 22px;
+        margin: 8px auto;
+        border: 3px solid var(--border-color);
+        border-top-color: var(--text-main);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
     .footer {
         text-align: center;
         font-size: 11px;

@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("save-btn").addEventListener("click",()=>{
         const apiKey = document.getElementById("api-key").value.trim();
 
-        if(!apikey) return;
+        if(!apiKey) return;
 
         chrome.storage.sync.set({geminiApiKey: apiKey},()=>{
             document.getElementById("success").style.display = 'block'
             setTimeout(() => {
-                windows.close()
+                window.close()
             }, 1000);
         })
     })
