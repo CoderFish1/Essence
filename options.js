@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded",()=>{
         if(!apiKey) return;
 
         chrome.storage.sync.set({geminiApiKey: apiKey},()=>{
-            document.getElementById("success").style.display = 'block'
+            document.getElementById("success").classList.add("show");
+            
             setTimeout(() => {
                 window.close()
             }, 1000);

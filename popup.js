@@ -1,7 +1,9 @@
 document.getElementById("summarize").addEventListener("click", async () => {
+  const btn = document.getElementById("summarize")
   const result = document.getElementById("result");
   const summaryType = document.getElementById("summary-type").value;
 
+  btn.disabled= true; // disabling summarize button while process 
   result.innerHTML = '<div class="loader"></div>';
 
   // get the user's api key
@@ -96,3 +98,27 @@ async function getGeminiSummary(rawText, type, apiKey) {
 
   return summary.trim();
 }
+
+// copying logic 
+document.getElementById("copy-btn").addEventListener('click',()=>{
+  const txt = document.getElementById("result").innerText;
+
+  if(!txt) return;
+
+  navigator.clipboard.writeText(txt).then(()=>{
+    const btn = document.getElementById("copy-btn");
+    const old  = btn.textContent;
+    btn.textContent = "Copied !!!";
+
+    setTimeout(() => {
+      btn.textContent = old;
+    }, 1200);
+  })
+})
+
+// dark-light theme toggle logic
+const themeBtn = document.getElementById("theme-toggle");
+themeBtn.addEventListener("click", ()=>{
+  document.body.classList.toggle("dark");
+  themeBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+});
