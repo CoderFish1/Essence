@@ -1,27 +1,38 @@
  {
-    "manifest_version": 3,
-    "name": "Essence",
-    "version": "1.0",
+   "manifest_version": 3,
+   "name": "Essence",
+   "description": "AI-powered webpage summarizer that generates different types of summaries.",
+   "version": "1.0",
 
-    "permissions":["scripting","activeTab","storage"],
+   "permissions": ["scripting", "activeTab", "storage"],
 
-    "action":{
-        "default_popup":"popup.html",
-        "default_icon":"essence_icon.png"
-    },
+   "icons": {
+     "16": "essence_icon.png",
+     "48": "essence_icon.png",
+     "128": "essence_icon.png"
+   },
 
-    "content_scripts": [{
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-       }
-    ],
+   "action": {
+     "default_popup": "popup.html",
+     "default_icon": {
+       "16": "essence_icon.png",
+       "48": "essence_icon.png",
+       "128": "essence_icon.png"
+     }
+   },
 
-    "background":{
-        "service_worker" : "background.js"
-    },
+   "content_scripts": [
+     {
+       "matches": ["<all_urls>"],
+       "js": ["content.js"]
+     }
+   ],
 
-    "options_page": "options.html",
+   "background": {
+     "service_worker": "background.js"
+   },
 
-    "host_permissions": ["<all_urls>"]
+   "options_page": "options.html",
 
+   "host_permissions": ["<all_urls>"]
  }
