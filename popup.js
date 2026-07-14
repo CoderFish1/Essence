@@ -1,9 +1,9 @@
 document.getElementById("summarize").addEventListener("click", async () => {
-  const btn = document.getElementById("summarize")
+  const btn = document.getElementById("summarize");
   const result = document.getElementById("result");
   const summaryType = document.getElementById("summary-type").value;
 
-  btn.disabled= true; // disabling summarize button while process 
+  btn.disabled = true; // disabling summarize button while process
   result.innerHTML = '<div class="loader"></div>';
 
   // get the user's api key
@@ -15,7 +15,21 @@ document.getElementById("summarize").addEventListener("click", async () => {
     }
 
     // ask content.js for the page text
-    chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, async ([tab]) => {
+      try {
+        await chrome.scripting.executeScript({
+          target: { tabId: tab.id },
+          files: ["content.js"],
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, 50));
+
+      } catch (e) {
+        result.innerText = "Couldn't access this page.";
+        btn.disabled = false;
+        return;
+      }
+
       chrome.tabs.sendMessage(
         tab.id,
         { type: "GET_ARTICLE_TEXT" },
@@ -23,7 +37,7 @@ document.getElementById("summarize").addEventListener("click", async () => {
           if (chrome.runtime.lastError) {
             result.innerText =
               "Couldn't reach this page. Try refreshing the tab.";
-              btn.disabled = false;
+            btn.disabled = false;
             return;
           }
 
@@ -42,8 +56,7 @@ document.getElementById("summarize").addEventListener("click", async () => {
             result.innerText = summary;
           } catch (error) {
             result.innerText = "Gemini error: " + error.message;
-          }
-          finally{
+          } finally {
             btn.disabled = false;
           }
         },
@@ -105,26 +118,26 @@ async function getGeminiSummary(rawText, type, apiKey) {
   return summary.trim();
 }
 
-// copying logic 
-document.getElementById("copy-btn").addEventListener('click',()=>{
+// copying logic
+document.getElementById("copy-btn").addEventListener("click", () => {
   const txt = document.getElementById("result").innerText;
 
-  if(!txt) return;
+  if (!txt) return;
 
-  navigator.clipboard.writeText(txt).then(()=>{
+  navigator.clipboard.writeText(txt).then(() => {
     const btn = document.getElementById("copy-btn");
-    const old  = btn.textContent;
+    const old = btn.textContent;
     btn.textContent = "Copied !!!";
 
     setTimeout(() => {
       btn.textContent = old;
     }, 1200);
-  })
-})
+  });
+});
 
 // dark-light theme toggle logic
 const themeBtn = document.getElementById("theme-toggle");
-themeBtn.addEventListener("click", ()=>{
+themeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark");
   themeBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
 });
